@@ -14,8 +14,7 @@ class Home extends Component {
         const url = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=${searchText}&from=0&to=30`
         fetch(url).then(res => res.json()).then(data => {
             this.setState({ recipes: data.hits });
-        }
-        );
+        });
         // TODO: add error handling - when there are zero results 
     }
 

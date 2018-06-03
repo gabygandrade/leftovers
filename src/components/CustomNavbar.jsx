@@ -9,7 +9,7 @@ const CustomNavbar = props => {
         <Navbar collapseOnSelect fixedTop>
             <Navbar.Header>
                 <Navbar.Brand>
-                    <Link to="/">Leftovers </Link>
+                    <Link to="/">Leftovers</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>

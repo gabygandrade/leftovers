@@ -9,10 +9,10 @@ const RecipeResults = ({ recipes }) => {
         const id = `${recipe.label}-${index}`
 
         const recipeArray =
-            <a className="RecipeResults-link" key={`${id}-aTag`}>
+            <a className="RecipeResults-link" key={`${id}-link`}>
                 <figure>
                     <img src={recipe.image} alt={recipe.label} className="RecipeResults-image" key={`${id}-img`} />
-                    <figcaption className="RecipeResults-title">
+                    <figcaption className="RecipeResults-caption">
                         {recipe.label}
                     </figcaption>
                 </figure>
