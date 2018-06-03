@@ -4,9 +4,9 @@ import { dummyRecipes } from './dummyRecipes';
 import './RecipeResults.css';
 
 const RecipeResults = ({ recipes }) => {
-    const formattedRecipes = recipes.map(recipeObj => {
+    const formattedRecipes = recipes.map((recipeObj, index) => {
         const recipe = recipeObj.recipe;
-        const id = recipe.label;
+        const id = `${recipe.label}-${index}`
 
         const recipeArray =
             <a className="RecipeResults-link" key={`${id}-aTag`}>
