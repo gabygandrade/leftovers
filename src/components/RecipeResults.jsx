@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 import { dummyRecipes } from './dummyRecipes';
 import './RecipeResults.css';
 
-const RecipeResults = ({ recipes }) => {
+const RecipeResults = (props) => {
+    const { recipes } = props;
+
     const formattedRecipes = recipes.map((recipeObj, index) => {
         const recipe = recipeObj.recipe;
         const id = `${recipe.label}-${index}`
 
         const recipeArray =
-            <a className="RecipeResults-link" key={`${id}-link`}>
+            <div className="RecipeResults-link" key={`${id}-link`} onClick={() => props.onClickOfRecipe(recipe)}>
                 <figure>
                     <img src={recipe.image} alt={recipe.label} className="RecipeResults-image" key={`${id}-img`} />
                     <figcaption className="RecipeResults-caption">
                         {recipe.label}
                     </figcaption>
                 </figure>
-            </a>
+            </div>
 
         return recipeArray;
     })
@@ -29,7 +31,8 @@ const RecipeResults = ({ recipes }) => {
 };
 
 RecipeResults.propTypes = {
-    recipes: PropTypes.array.isRequired
+    recipes: PropTypes.array.isRequired,
+    onClickOfRecipe: PropTypes.func.isRequired
 };
 
 export default RecipeResults;
