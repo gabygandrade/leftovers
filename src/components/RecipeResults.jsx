@@ -4,15 +4,19 @@ import { dummyRecipes } from './dummyRecipes';
 import './RecipeResults.css';
 
 const RecipeResults = ({ recipes }) => {
-    const formattedRecipes = recipes.map(recipe => {
-        const id = recipe.recipe_id;
+    const formattedRecipes = recipes.map(recipeObj => {
+        const recipe = recipeObj.recipe;
+        const id = recipe.label;
 
-        const recipeArray = <a key={`${id}-aTag`} href={recipe.publisher_url}>
-            <div className="RecipeResults-imageContainer">
-                <img src={recipe.image_url} alt={recipe.title} className="RecipeResults-image" key={`${id}-img`} />
-                <span className="RecipeResults-title">{recipe.title}</span>
-            </div >
-        </a>
+        const recipeArray =
+            <a className="RecipeResults-link" key={`${id}-aTag`}>
+                <figure>
+                    <img src={recipe.image} alt={recipe.label} className="RecipeResults-image" key={`${id}-img`} />
+                    <figcaption className="RecipeResults-title">
+                        {recipe.label}
+                    </figcaption>
+                </figure>
+            </a>
 
         return recipeArray;
     })
