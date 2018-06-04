@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 
 class Search extends Component {
-    state = { value: '' }
+    state = { value: '' };
 
     handleChange = (e) => this.setState({ value: e.target.value });
 

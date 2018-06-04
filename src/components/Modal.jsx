@@ -4,7 +4,6 @@ import { PropTypes } from 'prop-types';
 
 const RecipeModal = (props) => {
     const { show, handleClose, recipe } = props;
-    console.log('recipe: ', recipe);
 
     const ingredients = recipe.ingredientLines.map((ingredient, i) => {
         return <li key={`ingredient-${i}`} >{ingredient}</li>
@@ -20,7 +19,7 @@ const RecipeModal = (props) => {
                 <ul>
                     {ingredients}
                 </ul>
-                <p><a href={recipe.url}>Full Recipe</a></p>
+                <p style={{ "textAlign": "center" }}><Button href={recipe.url} bsStyle="success"> View Full Recipe</Button></p>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={handleClose}>Close</Button>
