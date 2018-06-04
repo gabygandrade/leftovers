@@ -14,11 +14,17 @@ class Home extends Component {
 
     handleSearch = (e, searchText) => {
         e.preventDefault();
+
         const url = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=${searchText}&from=0&to=30`
-        fetch(url).then(res => res.json()).then(data => {
-            this.setState({ recipes: data.hits });
-        });
-        // TODO: add error handling - when there are zero results 
+        fetch(url).then(response => {
+            // throw error for failed HTTP responses, since fetch API only rejects a promise if there is network error
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        })
+            .then(data => this.setState({ recipes: data.hits }))
+            .catch(error => console.error('Fetch failed with error:', error))
     }
 
     handleModalShow = (recipe) => {
