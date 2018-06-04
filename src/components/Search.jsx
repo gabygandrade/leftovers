@@ -27,6 +27,8 @@ class Search extends Component {
     }
 };
 
-export default Search;
+Search.propTypes = {
+    onSearch: PropTypes.func.isRequired,
+}
 
-// TODO: figure out why I cant use proptypes in this component
+export default Search;

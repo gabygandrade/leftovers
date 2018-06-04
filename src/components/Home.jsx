@@ -9,7 +9,7 @@ class Home extends Component {
     state = {
         recipes: [],
         showModal: false,
-        recipeClickOn: {}
+        selectedRecipe: {}
     }
 
     handleSearch = (e, searchText) => {
@@ -24,14 +24,14 @@ class Home extends Component {
     handleModalShow = (recipe) => {
         this.setState({
             showModal: true,
-            recipeClickOn: recipe
+            selectedRecipe: recipe
         })
     };
 
     handleModalClose = () => this.setState({ showModal: false })
 
     render() {
-        const { recipes } = this.state;
+        const { recipes, selectedRecipe, handleModalShow, handleModalClose } = this.state;
 
         const searchContent = (<div className="Home-container">
             <div className="Home-content">
@@ -42,13 +42,11 @@ class Home extends Component {
         )
 
         const recipeContent = (<div>
-            <RecipeResults recipes={recipes} onClickOfRecipe={this.handleModalShow} />
-            {this.state.showModal ? <RecipeModal recipe={this.state.recipe} show={this.state.showModal} handleModalClose={this.handleModalClose} /> : <div></div>}
-        </div>
-        // )
+            <RecipeResults recipes={this.state.recipes} onClickOfRecipe={this.handleModalShow} />
+            {this.state.showModal ? <RecipeModal recipe={this.state.selectedRecipe} show={this.state.showModal} handleClose={this.handleModalClose} /> : null}
+        </div>)
 
         return (recipes.length > 0 ? recipeContent : searchContent);
-        // return recipeContent;
     }
 };
 

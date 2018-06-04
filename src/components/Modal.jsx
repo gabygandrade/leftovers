@@ -1,76 +1,38 @@
-import React, { Component } from 'react';
-import { Popover, Tooltip, Button, Modal, OverlayTrigger } from 'react-bootstrap';
+import React from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { PropTypes } from 'prop-types';
 
 const RecipeModal = (props) => {
-    const { show, handleClose, recipe } = props
+    const { show, handleClose, recipe } = props;
+    console.log('recipe: ', recipe);
 
-    const popover = (<Popover id="modal-popover" title="popover">
-        very popover. such engagement
-        </Popover>);
-    const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
-
-    //    const ingredients = receipe.map()
+    const ingredients = recipe.ingredientLines.map((ingredient, i) => {
+        return <li key={`ingredient-${i}`} >{ingredient}</li>
+    });
 
     return (
-        <Modal show={props.show} onHide={props.handleClose}>
+        <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>{recipe.label}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <h4>Ingredients</h4>
-                <p>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-              </p>
-
-                <h4>Popover in a modal</h4>
-                <p>
-                    there is a{' '}
-                    <OverlayTrigger overlay={popover}>
-                        <a href="#popover">popover</a>
-                    </OverlayTrigger>{' '}
-                    here
-              </p>
-
-                <h4>Tooltips in a modal</h4>
-                <p>
-                    there is a{' '}
-                    <OverlayTrigger overlay={tooltip}>
-                        <a href="#tooltip">tooltip</a>
-                    </OverlayTrigger>{' '}
-                    here
-              </p>
-
-                <hr />
-
-                <h4>Overflowing text to show scroll behavior</h4>
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                    ac consectetur ac, vestibulum at eros.
-              </p>
-                <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur
-                    et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-                    auctor.
-              </p>
-                <p>
-                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-                    cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-                    dui. Donec ullamcorper nulla non metus auctor fringilla.
-              </p>
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                    ac consectetur ac, vestibulum at eros.
-              </p>
+                <ul>
+                    {ingredients}
+                </ul>
+                <p><a href={recipe.url}>Full Recipe</a></p>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.handleClose}>Close</Button>
+                <Button onClick={handleClose}>Close</Button>
             </Modal.Footer>
-        </Modal>
+        </Modal >
     );
 }
 
-export default RecipeModal;
+RecipeModal.propTypes = {
+    show: PropTypes.bool.isRequired,
+    recipe: PropTypes.object.isRequired,
+    handleClose: PropTypes.func.isRequired
+}
 
-// get close working
+export default RecipeModal;
