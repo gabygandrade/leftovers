@@ -12,10 +12,10 @@ class Search extends Component {
             <div className="RecipeSearch">
                 <Form inline onSubmit={e => this.props.onSearch(e, this.state.value)} >
                     <FormGroup controlId="formInlineName">
-                        <ControlLabel>I have...</ControlLabel>
+                        <ControlLabel style={{ marginRight: "5px" }}>I have...</ControlLabel>
                         <FormControl
                             type="text"
-                            placeholder="ex. mushrooms, spinach, garlic"
+                            placeholder="arugula, strawberries"
                             value={this.state.value}
                             onChange={this.handleChange}
                         />

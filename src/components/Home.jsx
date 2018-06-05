@@ -23,7 +23,10 @@ class Home extends Component {
             }
             return response.json();
         })
-            .then(data => this.setState({ recipes: data.hits }))
+            .then(data => {
+                if (data.hits.length > 0) this.setState({ recipes: data.hits })
+                else this.setState({ recipes: null })
+            })
             .catch(error => console.error('Fetch failed with error:', error))
     }
 
@@ -34,25 +37,31 @@ class Home extends Component {
         })
     };
 
-    handleModalClose = () => this.setState({ showModal: false })
+    handleModalClose = () => this.setState({ showModal: false });
 
-    render() {
-        const { recipes, selectedRecipe, handleModalShow, handleModalClose } = this.state;
-
-        const searchContent = (<div className="Home-container">
-            <div className="Home-content">
-                <h3>Search for Recipes</h3>
-                <Search onSearch={this.handleSearch} />
-            </div>
-        </div>
-        )
-
-        const recipeContent = (<div>
+    getRecipeContent = () => {
+        return (<div>
             <RecipeResults recipes={this.state.recipes} onClickOfRecipe={this.handleModalShow} />
             {this.state.showModal ? <RecipeModal recipe={this.state.selectedRecipe} show={this.state.showModal} handleClose={this.handleModalClose} /> : null}
         </div>)
+    }
 
-        return (recipes.length > 0 ? recipeContent : searchContent);
+    getSearchContent = () => {
+        return (<div className="Home-container">
+            <div className="Home-content">
+                <h3>Search for Recipes</h3>
+                <Search onSearch={this.handleSearch} />
+                {this.state.recipes === null ? <div className="Home-searchError">Oh no! We couldn't find any recipes for the ingredients you entered. Please try another search. </div> : null}
+            </div>
+        </div>
+        )
+    }
+
+    render() {
+        const { recipes } = this.state;
+        const recipesWereFetched = Array.isArray(recipes) && recipes.length > 0;
+
+        return (recipesWereFetched ? this.getRecipeContent() : this.getSearchContent());
     }
 };
 

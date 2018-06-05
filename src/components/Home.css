@@ -13,6 +13,10 @@
 .Home-content {
     flex-basis: 50%;
     background-color: white;  
-    /* may want to delete later */
     padding: 2%;
+}
+
+.Home-searchError {
+  color: red;
+  padding-top: 10px;
 }
