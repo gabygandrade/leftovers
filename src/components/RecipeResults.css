@@ -1,15 +1,16 @@
 .RecipeResults-container {
     /* set margin top to 60px to account for our nav bar */
-    margin: 70px 3% 20px 3%;
+    margin: 70px 7% 20px 7%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    color: gray;
 }
 
 .RecipeResults-link {
     display: inline-block;
     width: calc(50% - 4px);
-    margin-bottom: 8px;
+    margin-bottom: 1%;
     margin-right: 8px;
     text-decoration: none;
 }
@@ -19,21 +20,35 @@
     text-decoration: none;
 }
 
+.RecipeResults-figure {
+    margin: 2%;
+}
+
+.RecipeResults-caption {
+    font-weight: 100;
+    padding: 5%;
+    text-align: center;
+}
+
+.RecipeResults-name {
+    font-weight: bold;
+    color: #d9654f;
+}
+
 .RecipeResults-link:nth-of-type(2n) {
     margin-right: 0;
   }
 
 .RecipeResults-image {
-    border-radius: 20px; 
     max-width: 100%;
     height: auto;
     display: block;
     background: #ccc;
+    box-shadow: 0 11px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
-.RecipeResults-caption {
-    font-weight: 100;
-    color: gray;
+.RecipeResults-image:hover {
+    box-shadow: 0 11px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
  
 @media screen and (min-width: 40em) {

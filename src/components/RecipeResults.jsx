@@ -12,10 +12,12 @@ const RecipeResults = (props) => {
 
         const recipeArray =
             <div className="RecipeResults-link" key={`${id}-link`} onClick={() => props.onClickOfRecipe(recipe)}>
-                <figure>
+                <figure className="RecipeResults-figure">
                     <img src={recipe.image} alt={recipe.label} className="RecipeResults-image" key={`${id}-img`} />
                     <figcaption className="RecipeResults-caption">
-                        {recipe.label}
+                        <div className="RecipeResults-name">{recipe.label}</div>
+                        <div>{recipe.ingredientLines.length} Ingredients</div>
+                        <div>{recipe.dietLabels.join(' | ')}</div>
                     </figcaption>
                 </figure>
             </div>
