@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './Home.css'
-import Search from './Search';
+import SearchForm from './SearchForm';
 import RecipeResults from './RecipeResults';
+import RecipeModal from './RecipeModal';
 import { API_KEY, APP_ID } from '../keys';
-import RecipeModal from './Modal';
+import './Home.css'
 
 class Home extends Component {
     state = {
@@ -12,7 +12,7 @@ class Home extends Component {
         selectedRecipe: {}
     }
 
-    handleSearch = (e, searchText) => {
+    handleSearchRecipes = (e, searchText) => {
         e.preventDefault();
 
         const url = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=${searchText}&from=0&to=30`
@@ -30,19 +30,21 @@ class Home extends Component {
             .catch(error => console.error('Fetch failed with error:', error))
     }
 
-    handleModalShow = (recipe) => {
+    handleShowModal = recipe => {
         this.setState({
             showModal: true,
             selectedRecipe: recipe
         })
     };
 
-    handleModalClose = () => this.setState({ showModal: false });
+    handleCloseModal = () => this.setState({ showModal: false });
 
     getRecipeContent = () => {
+        const { recipes, showModal, selectedRecipe } = this.state;
+
         return (<div>
-            <RecipeResults recipes={this.state.recipes} onClickOfRecipe={this.handleModalShow} />
-            {this.state.showModal ? <RecipeModal recipe={this.state.selectedRecipe} show={this.state.showModal} handleClose={this.handleModalClose} /> : null}
+            <RecipeResults recipes={recipes} onClickOfRecipe={this.handleShowModal} />
+            {showModal ? <RecipeModal recipe={selectedRecipe} show={showModal} handleClose={this.handleCloseModal} /> : null}
         </div>)
     }
 
@@ -50,7 +52,7 @@ class Home extends Component {
         return (<div className="Home-container">
             <div className="Home-content">
                 <h3>Search for Recipes</h3>
-                <Search onSearch={this.handleSearch} />
+                <SearchForm onSubmit={this.handleSearchRecipes} />
                 {this.state.recipes === null ? <div className="Home-searchError">Oh no! We couldn't find any recipes for the ingredients you entered. Please try another search. </div> : null}
             </div>
         </div>

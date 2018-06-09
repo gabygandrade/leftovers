@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 
-class Search extends Component {
+class SearchForm extends Component {
     state = { value: '' };
 
-    handleChange = (e) => this.setState({ value: e.target.value });
+    handleChange = e => this.setState({ value: e.target.value });
 
     render() {
         return (
             <div className="RecipeSearch">
-                <Form inline onSubmit={e => this.props.onSearch(e, this.state.value)} >
+                <Form inline onSubmit={e => this.props.onSubmit(e, this.state.value)} >
                     <FormGroup controlId="formInlineName">
                         <ControlLabel style={{ marginRight: "5px" }}>I have...</ControlLabel>
                         <FormControl
@@ -27,8 +27,8 @@ class Search extends Component {
     }
 };
 
-Search.propTypes = {
-    onSearch: PropTypes.func.isRequired,
+SearchForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
 }
 
-export default Search;
+export default SearchForm;
