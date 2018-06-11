@@ -1,13 +1,4 @@
-.RecipeResults-container {
-    /* set margin top to 60px to account for our nav bar */
-    margin: 70px 7% 20px 7%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    color: gray;
-}
-
-.RecipeResults-link {
+.RecipeCard-container {
     display: inline-block;
     width: calc(50% - 4px);
     margin-bottom: 1%;
@@ -15,31 +6,31 @@
     text-decoration: none;
 }
 
-.RecipeResults-link:hover {
+.RecipeCard-container:hover {
     opacity: 0.7;
     text-decoration: none;
 }
 
-.RecipeResults-figure {
+.RecipeCard-figure {
     margin: 2%;
 }
 
-.RecipeResults-caption {
+.RecipeCard-caption {
     font-weight: 100;
     padding: 5%;
     text-align: center;
 }
 
-.RecipeResults-name {
+.RecipeCard-name {
     font-weight: bold;
     color: #d9654f;
 }
 
-.RecipeResults-link:nth-of-type(2n) {
+.RecipeCard-container:nth-of-type(2n) {
     margin-right: 0;
   }
 
-.RecipeResults-image {
+.RecipeCard-image {
     max-width: 100%;
     height: auto;
     display: block;
@@ -47,20 +38,20 @@
     box-shadow: 0 11px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
-.RecipeResults-image:hover {
+.RecipeCard-image:hover {
     box-shadow: 0 11px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
  
 @media screen and (min-width: 40em) {
-    .RecipeResults-link {
+    .RecipeCard-container {
       width: calc(25% - 6px);
     }
     
-    .RecipeResults-link:nth-of-type(2n) {
+    .RecipeCard-container:nth-of-type(2n) {
       margin-right: 8px;
     }
     
-    .RecipeResults-link:nth-of-type(4n) {
+    .RecipeCard-container:nth-of-type(4n) {
       margin-right: 0;
     }
   }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import SearchForm from './SearchForm';
-import RecipeResults from './RecipeResults';
-import RecipeModal from './RecipeModal';
+import SearchContainer from './SearchContainer';
+import RecipeContainer from './RecipeContainer';
 import { API_KEY, APP_ID } from '../keys';
-import './Home.css'
 
 class Home extends Component {
     state = {
@@ -39,31 +37,18 @@ class Home extends Component {
 
     handleCloseModal = () => this.setState({ showModal: false });
 
-    getRecipeContent = () => {
-        const { recipes, showModal, selectedRecipe } = this.state;
-
-        return (<div>
-            <RecipeResults recipes={recipes} onClickOfRecipe={this.handleShowModal} />
-            {showModal ? <RecipeModal recipe={selectedRecipe} show={showModal} handleClose={this.handleCloseModal} /> : null}
-        </div>)
-    }
-
-    getSearchContent = () => {
-        return (<div className="Home-container">
-            <div className="Home-content">
-                <h3>Search for Recipes</h3>
-                <SearchForm onSubmit={this.handleSearchRecipes} />
-                {this.state.recipes === null ? <div className="Home-searchError">Oh no! We couldn't find any recipes for the ingredients you entered. Please try another search. </div> : null}
-            </div>
-        </div>
-        )
-    }
-
     render() {
-        const { recipes } = this.state;
+        const { recipes, showModal, selectedRecipe } = this.state;
         const recipesWereFetched = Array.isArray(recipes) && recipes.length > 0;
+        const recipeContainerProps = {
+            recipes,
+            showModal,
+            selectedRecipe,
+            onClickOfRecipe: this.handleShowModal,
+            handleCloseModal: this.handleCloseModal
+        };
 
-        return (recipesWereFetched ? this.getRecipeContent() : this.getSearchContent());
+        return (recipesWereFetched ? <RecipeContainer {...recipeContainerProps} /> : <SearchContainer onSubmitOfSearch={this.handleSearchRecipes} searchErrorExists={this.state.recipes === null} />);
     }
 };
 

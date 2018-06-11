@@ -1,0 +1,8 @@
+.RecipeContainer-container {
+    /* set margin top to 60px to account for our nav bar */
+    margin: 70px 7% 20px 7%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: gray;
+}

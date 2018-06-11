@@ -1,0 +1,23 @@
+.SearchContainer-container {
+    margin-top: 50px;
+    background-image: url('../assets/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+  }
+  
+  .SearchContainer-content {
+      flex-basis: 50%;
+      background-color: white;  
+      padding: 2%;
+      box-shadow: 0 11px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .SearchContainer-error {
+    color: red;
+    padding-top: 10px;
+  }
