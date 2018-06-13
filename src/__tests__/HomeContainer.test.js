@@ -25,7 +25,6 @@ describe('Home component', () => {
     })
 
     it('renders the SearchContent component when it is first mounted', () => {
-        console.log(home.debug())
         expect(home.find('SearchContent').exists()).toBe(true);
     })
 
