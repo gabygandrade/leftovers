@@ -8,7 +8,7 @@ const SearchContainer = ({ onSubmitOfSearch, searchErrorExists }) => (
         <div className="SearchContainer-content">
             <h3>Search for Recipes</h3>
             <SearchForm onSubmit={onSubmitOfSearch} />
-            {searchErrorExists ? <div className="SearchContainer-error">Oh no! We couldn't find any recipes for the ingredients you entered. Please try another search. </div> : null}
+            {searchErrorExists && <div className="SearchContainer-error">Oh no! We couldn't find any recipes for the ingredients you entered. Please try another search. </div>}
         </div>
     </div>
 );

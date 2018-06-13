@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
 import SearchContainer from './SearchContainer';
 import RecipeContainer from './RecipeContainer';
-import { API_KEY, APP_ID } from '../keys';
+import { fetchRecipes } from '../apiCalls.js';
 
 class Home extends Component {
     state = {
         recipes: [],
         showModal: false,
-        selectedRecipe: {}
-    }
+        selectedRecipe: {},
+        noSearchResults: false,
+    };
 
-    handleSearchRecipes = (e, searchText) => {
+    handleSearchRecipes = async (e, searchText) => {
         e.preventDefault();
 
-        const url = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=${searchText}&from=0&to=30`
-        fetch(url).then(response => {
-            // throw error for failed HTTP responses, since fetch API only rejects a promise if there is network error
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            return response.json();
-        })
-            .then(data => {
-                if (data.hits.length > 0) this.setState({ recipes: data.hits })
-                else this.setState({ recipes: null })
-            })
-            .catch(error => console.error('Fetch failed with error:', error))
+        try {
+            const data = await fetchRecipes(searchText);
+            if (data.hits.length > 0) this.setState({ recipes: data.hits })
+            else this.setState({ noSearchResults: true })
+        } catch (error) {
+            console.error('Fetch failed with error:', error)
+        }
     }
 
     handleShowModal = recipe => {
@@ -48,7 +43,7 @@ class Home extends Component {
             handleCloseModal: this.handleCloseModal
         };
 
-        return (recipesWereFetched ? <RecipeContainer {...recipeContainerProps} /> : <SearchContainer onSubmitOfSearch={this.handleSearchRecipes} searchErrorExists={this.state.recipes === null} />);
+        return (recipesWereFetched ? <RecipeContainer {...recipeContainerProps} /> : <SearchContainer onSubmitOfSearch={this.handleSearchRecipes} searchErrorExists={this.state.noSearchResults} />);
     }
 };
 
