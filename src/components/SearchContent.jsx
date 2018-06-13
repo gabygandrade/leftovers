@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchForm from './SearchForm';
-import './SearchContainer.css';
+import './SearchContent.css';
 
-const SearchContainer = ({ onSubmitOfSearch, searchErrorExists }) => (
+const SearchContent = ({ onSubmitOfSearch, searchErrorExists }) => (
     <div className="SearchContainer-container">
         <div className="SearchContainer-content">
             <h3>Search for Recipes</h3>
@@ -13,9 +13,9 @@ const SearchContainer = ({ onSubmitOfSearch, searchErrorExists }) => (
     </div>
 );
 
-SearchContainer.propTypes = {
+SearchContent.propTypes = {
     onSubmitOfSearch: PropTypes.func.isRequired,
     searchErrorExists: PropTypes.bool.isRequired
 };
 
-export default SearchContainer;
+export default SearchContent;

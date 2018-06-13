@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import SearchContainer from './SearchContainer';
-import RecipeContainer from './RecipeContainer';
+import SearchContent from './SearchContent';
+import RecipeResults from './RecipeResults';
 import { fetchRecipes } from '../apiCalls.js';
 
-class Home extends Component {
+class HomeContainer extends Component {
     state = {
         recipes: [],
         showModal: false,
@@ -35,7 +35,7 @@ class Home extends Component {
     render() {
         const { recipes, showModal, selectedRecipe } = this.state;
         const recipesWereFetched = Array.isArray(recipes) && recipes.length > 0;
-        const recipeContainerProps = {
+        const recipeResultsProps = {
             recipes,
             showModal,
             selectedRecipe,
@@ -43,8 +43,8 @@ class Home extends Component {
             handleCloseModal: this.handleCloseModal
         };
 
-        return (recipesWereFetched ? <RecipeContainer {...recipeContainerProps} /> : <SearchContainer onSubmitOfSearch={this.handleSearchRecipes} searchErrorExists={this.state.noSearchResults} />);
+        return (recipesWereFetched ? <RecipeResults {...recipeResultsProps} /> : <SearchContent onSubmitOfSearch={this.handleSearchRecipes} searchErrorExists={this.state.noSearchResults} />);
     }
 };
 
-export default Home;
+export default HomeContainer;

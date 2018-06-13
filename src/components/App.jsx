@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './CustomNavbar';
-import Home from './Home';
+import HomeContainer from './HomeContainer';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
       <Router>
         <div>
           <Navbar />
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={HomeContainer} />
         </div>
       </Router>
     );

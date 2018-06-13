@@ -2,9 +2,9 @@ import React from 'react';
 import RecipeCard from './RecipeCard';
 import RecipeModal from './RecipeModal';
 import PropTypes from 'prop-types';
-import './RecipeContainer.css';
+import './RecipeResults.css';
 
-const RecipeContainer = ({ recipes, showModal, selectedRecipe, onClickOfRecipe, handleCloseModal }) => {
+const RecipeResults = ({ recipes, showModal, selectedRecipe, onClickOfRecipe, handleCloseModal }) => {
     const formattedRecipes = recipes.map((recipeObj, index) => {
         const recipe = recipeObj.recipe;
         const id = `${recipe.label}-${index}`
@@ -21,9 +21,9 @@ const RecipeContainer = ({ recipes, showModal, selectedRecipe, onClickOfRecipe, 
     );
 };
 
-RecipeContainer.propTypes = {
+RecipeResults.propTypes = {
     recipes: PropTypes.array.isRequired,
     onClickOfRecipe: PropTypes.func.isRequired
 };
 
-export default RecipeContainer;
+export default RecipeResults;

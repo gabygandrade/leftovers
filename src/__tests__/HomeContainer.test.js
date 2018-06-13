@@ -1,13 +1,14 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Home from '../components/Home';
+import HomeContainer from '../components/HomeContainer';
 
 describe('Home component', () => {
     let home;
     let mockRecipes;
 
     beforeEach(() => {
-        home = shallow(<Home />);
+        home = shallow(<HomeContainer />);
+
         mockRecipes = [
             {
                 "label": "Grilled Shrimp",
@@ -20,16 +21,16 @@ describe('Home component', () => {
                 "ingredientLines": ["Shrimp 24 x shrimp", "6 x prosciutto"]
             }
         ];
+
     })
 
-    it('renders the SearchContainer component when it is first mounted', () => {
-        home = shallow(<Home />);
-        expect(home.find('SearchContainer').exists()).toBe(true);
+    it('renders the SearchContent component when it is first mounted', () => {
+        console.log(home.debug())
+        expect(home.find('SearchContent').exists()).toBe(true);
     })
 
-    it('renders the RecipeContainer component when there are recipes in its state', () => {
-        home = shallow(<Home />);
+    it('renders the RecipeResults component when there are recipes in its state', () => {
         home.setState({ recipes: mockRecipes });
-        expect(home.find('RecipeContainer').exists()).toBe(true);
+        expect(home.find('RecipeResults').exists()).toBe(true);
     });
 })
